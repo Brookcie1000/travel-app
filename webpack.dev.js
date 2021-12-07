@@ -15,7 +15,7 @@ module.exports = {
     mode: "development",
     devtool: "source-map",
     devServer: {
-        watchFiles: ["src/**"]
+        watchFiles: ["src/**", "src/client/index.js"]
 
     },
     module: {

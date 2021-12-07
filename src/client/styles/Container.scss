@@ -1,0 +1,13 @@
+#container {
+    border: 2px green solid;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 80px 300px 300px 300px 80px;
+    grid-template-areas:
+    "header"
+    "location"
+    "date"
+    "result"
+    "footer";
+
+}

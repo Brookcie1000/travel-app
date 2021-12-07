@@ -1,6 +1,9 @@
 const path = require("path")
 const webpack = require("webpack")
 const htmlWebpackPlugin = require("html-webpack-plugin")
+const miniCssExtractPlugin = require("mini-css-extract-plugin")
+const cssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin")
+const terserPlugin = require("terser-webpack-plugin")
 
 module.exports = {
     entry: "./src/client/index.js",
@@ -12,6 +15,9 @@ module.exports = {
         library: "Client"
 
     },
+    optimization: {
+        minimizer: [new terserPlugin({}), new cssMinimizerWebpackPlugin({})],
+        },
     mode: "production",
     module: {
         rules: [
@@ -23,8 +29,8 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-                
+                use: [ miniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
+
             }
 
         ]
@@ -35,7 +41,8 @@ module.exports = {
             template: "./src/client/views/index.html",
             filename: "./index.html"
 
-        })
+        }),
+        new miniCssExtractPlugin({ filename: "[name].css" })
 
     ]
 }
