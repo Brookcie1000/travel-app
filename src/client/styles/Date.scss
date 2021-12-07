@@ -1,7 +1,29 @@
+@import "./Variables.scss";
+
 #date {
-    grid-area: date;
+    grid-area: "date";
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
+}
+
+#date-pic {
+    grid-area: "pic";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-top: $border-radius-px;
+
+}
+
+#date-main {
+    grid-area: "main";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: $border-radius-px;
 }

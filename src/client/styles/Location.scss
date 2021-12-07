@@ -1,7 +1,29 @@
+@import "./Variables.scss";
+
 #location {
-    grid-area: location;
+    grid-area: "location";
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
+}
+
+#location-pic {
+    grid-area: "pic";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-top: $border-radius-px;
+
+}
+
+#location-main {
+    grid-area: "main";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: $border-radius-px;
 }

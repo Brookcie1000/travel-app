@@ -1,4 +1,22 @@
+@import "./Variables.scss";
+
 .outline {
     border: 2px red solid;
+
+}
+
+body {
+    background-color: peru;
+
+}
+
+.card {
+    display: grid;
+    grid-template-columns: $card-width-dim;
+    grid-template-rows: $card-row-pic-dim $card-row-main-dim;
+    grid-template-areas:
+    "pic"
+    "main";
+    border-radius: $border-radius-px;
 
 }

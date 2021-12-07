@@ -1,7 +1,29 @@
+@import "./Variables.scss";
+
 #result {
-    grid-area: result;
+    grid-area: "result";
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
+}
+
+#result-pic {
+    grid-area: "pic";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-top: $border-radius-px;
+
+}
+
+#result-main {
+    grid-area: "main";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: $border-radius-px;
 }
