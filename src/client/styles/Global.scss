@@ -18,5 +18,26 @@ body {
     "pic"
     "main";
     border-radius: $border-radius-px;
+    background-color: lightgoldenrodyellow;
+
+}
+
+.bttn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    height: 100px;
+    width: 300px;
+}
+
+.text-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: $card-text-width;
+    height: $card-text-height;
 
 }

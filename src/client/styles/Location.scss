@@ -16,14 +16,18 @@
     justify-content: center;
     align-items: center;
     border-top: $border-radius-px;
+    background-image: url(../img/location-pic-img.png);
+    background-size: 100% 100%;
 
 }
 
 #location-main {
     grid-area: "main";
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    row-gap: $card-main-gap;
     border-bottom: $border-radius-px;
+    padding: $card-text-padding;
 }
