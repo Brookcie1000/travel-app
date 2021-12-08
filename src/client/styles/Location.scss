@@ -30,4 +30,67 @@
     row-gap: $card-main-gap;
     border-bottom: $border-radius-px;
     padding: $card-text-padding;
+
+}
+
+#location-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+
+}
+
+#country-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 30%;
+    font-size: 50px;
+    border-radius: $border-radius-px;
+
+    #country {
+        width: 100%;
+        height: 100%;
+        font-size: 50px;
+
+        &:hover {
+            font-size: 10px;
+
+        }
+    }
+
+}
+
+#city {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 30%;
+    border-radius: $border-radius-px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    label {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 50px;
+        
+    
+    }
+
+    input {
+        margin: 0 auto;
+        min-width: 90%;
+        min-height: 65%;
+        font-size: 50px;
+    
+    }
+
 }

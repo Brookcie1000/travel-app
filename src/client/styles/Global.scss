@@ -41,3 +41,60 @@ body {
     height: $card-text-height;
 
 }
+
+button {
+    .kk-submit {
+        width: 1000px;
+
+    }
+
+    &.kk-submit {
+        background: transparent;
+        border: none;
+    }
+
+
+    &.kk-submit.is-active {
+        cursor: default;
+    }
+
+
+    &.kk-submit:focus {
+        outline: none;
+    }
+
+
+    &.kk-submit::-moz-focus-inner {
+        border: 0;
+    }
+
+
+    &.kk-submit svg text {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+
+    &.kk-submit svg text.textNode {
+        fill: #48727F;
+    }
+
+
+    &.kk-submit svg text.checkNode {
+        fill-opacity: 0;
+    }
+
+
+    &.kk-submit svg rect.btn-shape.btn-bg {
+        stroke: #48727F;
+        fill: white;
+    }
+
+
+    &.kk-submit svg rect.btn-shape.btn-color {
+        stroke: #48727F;
+        fill: white;
+        stroke-dasharray: 453;
+        stroke-dashoffset: 0;
+    }
+
+}
