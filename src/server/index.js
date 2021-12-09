@@ -3,13 +3,14 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
-const fetch = require('node-fetch') //node-fetch version must be less than v3 to use require statement
+const fetch = require('node-fetch'); //node-fetch version must be less than v3 to use require statement
+const { count } = require('console');
 
 const app = express() //runs the server
 
 app.use(cors()) //allows communication between client and server
 
-app.use(bodyParser.text()) //allows to send and receive text from client in POST
+app.use(bodyParser.json()) //allows to send and receive text from client in POST
 
 dotenv.config(); //allows local codes for privacy keys
 
@@ -23,8 +24,19 @@ app.get('/', function (req, res) {
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+    console.log('Travel App listening on port 8081!')
 })
+
+//Set variables to store data on server
+let countryInput = "";
+let cityInput = "";
+
+const storeData = (req,res) => {
+    countryInput = req.body
+    console.log(countryInput)
+    res.end();
+
+}
 
 const getAPIData = async (req,res) => { //function that contacts the API
     const urlRoot = "https://api.meaningcloud.com/sentiment-2.1"
@@ -71,4 +83,4 @@ const getAPIData = async (req,res) => { //function that contacts the API
 
 }
 
-    app.post('/getAPIData', getAPIData) //setup POST connection to server from client
+    app.post('/storeLocationData', storeData) //setup POST connection to server from client

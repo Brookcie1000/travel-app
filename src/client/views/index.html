@@ -10,12 +10,12 @@
             <div id="location" class="outline">
                 <div id="location-card" class="card outline">
                     <div id="location-pic" class="outline">
-                        
+                        <!--Used CSS to input an image for the location-pic-->
                     </div>
                     <div id="location-main" class="outline">
                         <div id="location-text" class="outline text-box">
                             <div id="country-dropdown" class="outline">
-                                <select id="country" name="country">
+                                <select id="country" name="country" onblur="Client.resetCountryColour()">
                                     <option>Select a Country</option>
                                     <option value="AF">Afghanistan</option>
                                     <option value="AX">Aland Islands</option>
@@ -274,12 +274,12 @@
                             <div id="city-text" class="outline">
                                 <form>
                                     <label for="city">Type Your City</label>
-                                    <input type="text" id="city" name="city"><br><br>
+                                    <input type="text" id="city" name="city" onblur="Client.resetCityColour()"><br><br>
                                 </form>
                             </div>
                         </div>
                         <div id="submit-bttn" class="outline bttn">
-                            <button class="kk-submit">
+                            <button class="kk-submit" onclick="Client.getUserInput()">
                                 <svg width="274" height="112" 
                                      viewPort="0 0 274 112" version="1.1"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -326,7 +326,7 @@
             <div id="date" class="outline">
                 <div id="date-card" class="card outline">
                     <div id="date-pic" class="outline">
-                        
+                        <!--Have used CSS to input the image of the date-pic-->
                     </div>
                     <div id="date-main" class="outline">
                         <div id="date-text" class="outline text-box">
