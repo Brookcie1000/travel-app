@@ -97,4 +97,22 @@ button {
         stroke-dashoffset: 0;
     }
 
+    &:hover {
+        &.kk-submit svg rect.btn-shape.btn-bg {
+            stroke: black;
+            fill: #48727F;
+        }
+    
+    
+        &.kk-submit svg rect.btn-shape.btn-color {
+            stroke: black;
+            fill: #48727F;
+        }
+
+        &.kk-submit svg text.textNode {
+            fill: white;
+        }
+
+    }
+
 }
