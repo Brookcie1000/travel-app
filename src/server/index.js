@@ -31,7 +31,7 @@ let locationInput = "";
 let dateInput = "";
 let arrayOfUserInputs = [];
 
-const storeLocationData = (req,res) => {
+const storeLocationData = async (req,res) => {
     locationInput = req.body;
     arrayOfUserInputs.push(locationInput);
     const arrayLength = arrayOfUserInputs.length;
@@ -43,7 +43,14 @@ const storeLocationData = (req,res) => {
         console.log();
         console.log("Getting location info from geonames API");
         console.log("=================================================");
-        geonamesFetch();
+        const APIData = await geonamesFetch();
+        try {
+            res.send(APIData);
+
+        } catch(error) {
+            console.log(error);
+
+        }
 
     } else {
         console.log("ready to send to API");
@@ -78,12 +85,13 @@ const geonamesFetch = async () => {
     const arrayLength = arrayOfUserInputs.length;
     const cityName = "name_equals=" + arrayOfUserInputs[arrayLength-1].city;
     const countryName = "&country=" + arrayOfUserInputs[arrayLength-1].country;
-    const APIKey = `&${process.env.API_KEY}`
+    const APIKey = `&username=${process.env.API_KEY}`
     const resFromAPI = await fetch(rootURL + cityName + countryName + APIKey);
 
     try {
-        const APIData = resFromAPI.json();
-        res.send(APIData);
+        console.log(rootURL + cityName + countryName + APIKey);
+        const APIData = await resFromAPI.json();
+        return APIData;
 
     } catch(error) {
         console.log(error);
