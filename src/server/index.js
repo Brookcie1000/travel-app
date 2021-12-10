@@ -37,15 +37,17 @@ const storeLocationData = async (req,res) => {
     const arrayLength = arrayOfUserInputs.length;
     console.log();
     console.log("=================================================")
-    console.log(`Received country <${locationInput.country}> and city <${locationInput.city}> from client.`)
+    console.log(`Received country <${locationInput.country}>, city <${locationInput.city}>, and postcode <${locationInput.postcode}> from client.`)
 
     if (arrayOfUserInputs[arrayLength-1].date == undefined) {
         console.log();
         console.log("Getting location info from geonames API");
-        console.log("=================================================");
         const APIData = await geonamesFetch();
         try {
-            res.send(APIData);
+            arrayOfUserInputs[arrayLength-1].lat = APIData.postalCodes[0].lat;
+            arrayOfUserInputs[arrayLength-1].lng = APIData.postalCodes[0].lng;
+            console.log(arrayOfUserInputs);
+            res.send("::Server has saved your location input::");
 
         } catch(error) {
             console.log(error);
@@ -53,7 +55,7 @@ const storeLocationData = async (req,res) => {
         }
 
     } else {
-        console.log("ready to send to API");
+        console.log("ready to get weather data");
 
     }
     
@@ -81,15 +83,17 @@ const storeDateData = (req,res) => {
 }
 
 const geonamesFetch = async () => {
-    const rootURL = "http://api.geonames.org/searchJSON?";
+    const rootURL = "http://api.geonames.org/postalCodeSearchJSON?";
     const arrayLength = arrayOfUserInputs.length;
-    const cityName = "name_equals=" + arrayOfUserInputs[arrayLength-1].city;
+    const cityName = "placename=" + arrayOfUserInputs[arrayLength-1].city;
     const countryName = "&country=" + arrayOfUserInputs[arrayLength-1].country;
+    const postcodeName = "&postalcode=" + arrayOfUserInputs[arrayLength-1].postcode;
     const APIKey = `&username=${process.env.API_KEY}`
-    const resFromAPI = await fetch(rootURL + cityName + countryName + APIKey);
+    const resFromAPI = await fetch(rootURL + cityName + countryName + postcodeName + APIKey);
 
     try {
-        console.log(rootURL + cityName + countryName + APIKey);
+        console.log(rootURL + cityName + countryName + postcodeName + APIKey);
+        console.log("=================================================");
         const APIData = await resFromAPI.json();
         return APIData;
 

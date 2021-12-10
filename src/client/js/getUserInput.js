@@ -3,8 +3,9 @@ const getLocationInput = async () => {
     const countryDiv = document.getElementById("country");
     const cityInput = document.getElementById("city").value;
     const cityDiv = document.getElementById("city");
+    const postcodeInput = document.getElementById("postcode").value;
     if (countryInput === "Select a Country" || cityInput === "") {
-        alert("Please Select a Country and City");
+        alert("Country and City Are Required.");
 
         if (countryInput === "Select a Country") {
             countryDiv.style.backgroundColor = "lightcoral";
@@ -17,10 +18,44 @@ const getLocationInput = async () => {
         }
 
     } else {
-        const serverRes = await sendLocationToServer("http://localhost:8081/storeLocationData", countryInput, cityInput);
+        const serverRes = await sendLocationToServer("http://localhost:8081/storeLocationData", countryInput, cityInput, postcodeInput);
+        try {
+            console.log(serverRes);
+
+        } catch(error) {
+            console.log(error);
+
+        }
 
     }
 
+}
+
+const sendLocationToServer = async (url, countryInput, cityInput, postcodeInput) => {
+    const userInput = {
+        country: countryInput,
+        city: cityInput,
+        postcode: postcodeInput
+    };
+
+    const serverRes = await fetch(url, {
+        // Set the POST data to be sent.
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        // Body data type must match "Content-Type" header        
+        body: JSON.stringify(userInput)
+    })
+    try{
+        return serverRes.text();
+
+    } catch(error) {
+        console.log(error);
+
+    }
+    
 }
 
 const getDateInput = async () => {
@@ -38,26 +73,6 @@ const resetCountryColour = () => {
 const resetCityColour = () => {
     const cityDiv = document.getElementById("city");
     cityDiv.style.backgroundColor = "white";
-}
-
-const sendLocationToServer = async (url, countryInput, cityInput) => {
-    const userInput = {
-        country: countryInput,
-        city: cityInput
-    };
-
-    const serverRes = await fetch(url, {
-        // Set the POST data to be sent.
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        // Body data type must match "Content-Type" header        
-        body: JSON.stringify(userInput)
-    })
-    
-    return console.log("::Server stored location data::") //return a message
 }
 
 const sendDateToServer = async (url, dateInput) => {
