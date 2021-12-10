@@ -8,12 +8,12 @@ import "./styles/Result.scss"
 import "./styles/Footer.scss"
 import { getTodayDate } from "./js/setDateforCalendar"
 import { updateHTML } from "./js/setDateforCalendar"
-import { getUserInput } from "./js/getLocationInput"
-import { resetCountryColour } from "./js/getLocationInput"
-import { resetCityColour } from "./js/getLocationInput"
+import { getLocationInput, sendDateToServer, resetCityColour, resetCountryColour, getDateInput} from "./js/getUserInput"
 
 export {getTodayDate}
 export {updateHTML}
-export {getUserInput}
+export {getLocationInput}
 export {resetCountryColour}
 export {resetCityColour}
+export {sendDateToServer}
+export {getDateInput}

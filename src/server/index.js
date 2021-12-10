@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 const fetch = require('node-fetch'); //node-fetch version must be less than v3 to use require statement
 const { count } = require('console');
+const res = require('express/lib/response');
 
 const app = express() //runs the server
 
@@ -16,8 +17,6 @@ dotenv.config(); //allows local codes for privacy keys
 
 app.use(express.static('dist')) //where the server looks as its root
 
-console.log(__dirname)
-
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html') //send the html file on connection
 })
@@ -28,59 +27,70 @@ app.listen(8081, function () {
 })
 
 //Set variables to store data on server
-let countryInput = "";
-let cityInput = "";
+let locationInput = "";
+let dateInput = "";
+let arrayOfUserInputs = [];
 
-const storeData = (req,res) => {
-    countryInput = req.body
-    console.log(countryInput)
-    res.end();
+const storeLocationData = (req,res) => {
+    locationInput = req.body;
+    arrayOfUserInputs.push(locationInput);
+    const arrayLength = arrayOfUserInputs.length;
+    console.log();
+    console.log("=================================================")
+    console.log(`Received country <${locationInput.country}> and city <${locationInput.city}> from client.`)
+
+    if (arrayOfUserInputs[arrayLength-1].date == undefined) {
+        console.log();
+        console.log("Getting location info from geonames API");
+        console.log("=================================================");
+        geonamesFetch();
+
+    } else {
+        console.log("ready to send to API");
+
+    }
+    
 
 }
 
-const getAPIData = async (req,res) => { //function that contacts the API
-    const urlRoot = "https://api.meaningcloud.com/sentiment-2.1"
-    const urlKey = `?key=${process.env.API_KEY}` //hidden API key, prevents github upload by adding .env to gitignore file
-    const urlLang = "&lang=auto"
-    let urlLink = "&url=" + req.body //the data sent from client
-    console.log(`
+const storeDateData = (req,res) => {
+    dateInput = req.body;
+    const arrayLength = arrayOfUserInputs.length;
+    arrayOfUserInputs[arrayLength-1].date = dateInput.date;
+    console.log();
+    console.log("=================================================");
+    console.log(`Received <${dateInput.date}> as Depart Date`)
 
+    if (arrayOfUserInputs[arrayLength-1].country == undefined || arrayOfUserInputs[arrayLength-1].city == undefined) {
+        console.log("There is no city/country input for this request. Reminding user...")
+        console.log("=================================================");
+        res.send("Need Location Data")
 
+    } else {
+        res.end();
 
+    }
+    
+}
 
+const geonamesFetch = async () => {
+    const rootURL = "http://api.geonames.org/searchJSON?";
+    const arrayLength = arrayOfUserInputs.length;
+    const cityName = "name_equals=" + arrayOfUserInputs[arrayLength-1].city;
+    const countryName = "&country=" + arrayOfUserInputs[arrayLength-1].country;
+    const APIKey = `&${process.env.API_KEY}`
+    const resFromAPI = await fetch(rootURL + cityName + countryName + APIKey);
 
-    ==========================
-    Request from client received: ${req.body}
-    ==========================`)
-    console.log(`
-    ==========================
-    sending url to API... please wait
-    ==========================`)
-
-    const resFromAPI = await fetch(urlRoot + urlKey + urlLang + urlLink) //call the API and wait for connection
-
-    try{
-        console.log(`
-        ==========================
-        Response from API received
-        ==========================`)
-        const APIData = await resFromAPI.json() //set the API response to variable
-        console.log(`
-        ==========================
-        Sending API response to client
-        ==========================`)
-        res.send(APIData) //send API response back to client
-
-        console.log(`
-        ==========================
-        DONE!
-        ==========================`)
+    try {
+        const APIData = resFromAPI.json();
+        res.send(APIData);
 
     } catch(error) {
-        console.log(error)
+        console.log(error);
 
     }
 
 }
 
-    app.post('/storeLocationData', storeData) //setup POST connection to server from client
+app.post('/storeLocationData', storeLocationData); //setup POST connection to server from client
+app.post('/storeDateData', storeDateData);

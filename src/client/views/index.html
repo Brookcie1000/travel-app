@@ -273,13 +273,13 @@
                             </div>
                             <div id="city-text" class="outline">
                                 <form>
-                                    <label for="city">Type Your City</label>
+                                    <label for="city">Type Your City/Suburb</label>
                                     <input type="text" id="city" name="city" onblur="Client.resetCityColour()"><br><br>
                                 </form>
                             </div>
                         </div>
                         <div id="submit-bttn" class="outline bttn">
-                            <button class="kk-submit" onclick="Client.getUserInput()">
+                            <button class="kk-submit" onclick="Client.getLocationInput()">
                                 <svg width="274" height="112" 
                                      viewPort="0 0 274 112" version="1.1"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -330,10 +330,10 @@
                     </div>
                     <div id="date-main" class="outline">
                         <div id="date-text" class="outline text-box">
-                            <label for="start">Start date:</label>
+                            <label for="start">Depart Date:</label>
                             <input type="date" id="date-start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2023-01-01">
                         </div>
-                        <div id="submit-bttn" class="outline bttn">
+                        <div id="submit-bttn" class="outline bttn" onclick="Client.getDateInput()">
                             <button class="kk-submit">
                                 <svg width="274" height="112" 
                                      viewPort="0 0 274 112" version="1.1"

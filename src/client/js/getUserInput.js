@@ -1,4 +1,4 @@
-const getUserInput = async () => {
+const getLocationInput = async () => {
     const countryInput = document.getElementById("country").value;
     const countryDiv = document.getElementById("country");
     const cityInput = document.getElementById("city").value;
@@ -17,9 +17,15 @@ const getUserInput = async () => {
         }
 
     } else {
-        const serverRes = await sendToServer("http://localhost:8081/storeLocationData", countryInput, cityInput);
+        const serverRes = await sendLocationToServer("http://localhost:8081/storeLocationData", countryInput, cityInput);
 
     }
+
+}
+
+const getDateInput = async () => {
+    const DateInput = document.getElementById("date-start").value;
+    const serverRes = await sendDateToServer("http://localhost:8081/storeDateData", DateInput);
 
 }
 
@@ -34,7 +40,7 @@ const resetCityColour = () => {
     cityDiv.style.backgroundColor = "white";
 }
 
-const sendToServer = async (url, countryInput, cityInput) => {
+const sendLocationToServer = async (url, countryInput, cityInput) => {
     const userInput = {
         country: countryInput,
         city: cityInput
@@ -54,6 +60,27 @@ const sendToServer = async (url, countryInput, cityInput) => {
     return console.log("::Server stored location data::") //return a message
 }
 
-export {getUserInput}
+const sendDateToServer = async (url, dateInput) => {
+    const userInput = {
+        date: dateInput
+    }
+
+    const serverRes = await fetch(url, {
+        // Set the POST data to be sent.
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        // Body data type must match "Content-Type" header        
+        body: JSON.stringify(userInput)
+    })
+
+    return console.log("::Server stored date data::")
+}
+
+export {getLocationInput}
 export {resetCountryColour}
 export {resetCityColour}
+export {sendDateToServer}
+export {getDateInput}
