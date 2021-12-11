@@ -65,17 +65,15 @@ const storeLocationData = async (req,res) => {
 const storeDateData = (req,res) => {
     dateInput = req.body;
     const arrayLength = arrayOfUserInputs.length;
-    arrayOfUserInputs[arrayLength-1].date = dateInput.date;
-    console.log();
-    console.log("=================================================");
-    console.log(`Received <${dateInput.date}> as Depart Date`)
-
-    if (arrayOfUserInputs[arrayLength-1].country == undefined || arrayOfUserInputs[arrayLength-1].city == undefined) {
-        console.log("There is no city/country input for this request. Reminding user...")
+    if (arrayOfUserInputs.length === 0) {
         console.log("=================================================");
-        res.send("Need Location Data")
-
+        console.log("There is no city/country input for this request. Reminding user...");
+        console.log("=================================================");
+        res.send(alert("Please Input Location Data First."));
     } else {
+        arrayOfUserInputs[arrayLength-1].date = dateInput.date;
+        console.log();    
+        console.log(`Received <${dateInput.date}> as Depart Date`);
         res.end();
 
     }
