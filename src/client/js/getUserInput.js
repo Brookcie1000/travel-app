@@ -61,6 +61,19 @@ const sendLocationToServer = async (url, countryInput, cityInput, postcodeInput)
 const getDateInput = async () => {
     const DateInput = document.getElementById("date-start").value;
     const serverRes = await sendDateToServer("http://localhost:8081/storeDateData", DateInput);
+    try {
+        if (serverRes.message === "Please Input Location Data First.") {
+            alert(serverRes.message);
+
+        } else {
+            console.log("::Server stored date data::");
+
+        }
+
+    } catch(error) {
+        console.log(error);
+
+    }
 
 }
 
@@ -90,8 +103,14 @@ const sendDateToServer = async (url, dateInput) => {
         // Body data type must match "Content-Type" header        
         body: JSON.stringify(userInput)
     })
+    try {
+        return serverRes.json();
 
-    return console.log("::Server stored date data::")
+    } catch(error) {
+        console.log(error);
+
+    }
+
 }
 
 export {getLocationInput}

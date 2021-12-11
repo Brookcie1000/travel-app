@@ -69,7 +69,7 @@ const storeDateData = (req,res) => {
         console.log("=================================================");
         console.log("There is no city/country input for this request. Reminding user...");
         console.log("=================================================");
-        res.send(alert("Please Input Location Data First."));
+        res.send({message: "Please Input Location Data First."});
     } else {
         arrayOfUserInputs[arrayLength-1].date = dateInput.date;
         console.log();    
