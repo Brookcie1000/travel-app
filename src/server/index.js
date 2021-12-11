@@ -47,7 +47,7 @@ const storeLocationData = async (req,res) => {
             arrayOfUserInputs[arrayLength-1].lat = `${APIData.postalCodes[0].lat}`;
             arrayOfUserInputs[arrayLength-1].lng = `${APIData.postalCodes[0].lng}`;
             console.log(arrayOfUserInputs);
-            res.send("::Server has saved your location input::");
+            res.send({message: "::Server has saved your location input::"});
 
         } catch(error) {
             console.log(error);
@@ -72,9 +72,11 @@ const storeDateData = (req,res) => {
         res.send({message: "Please Input Location Data First."});
     } else {
         arrayOfUserInputs[arrayLength-1].date = dateInput.date;
-        console.log();    
+        console.log();
+        console.log("=================================================");
         console.log(`Received <${dateInput.date}> as Depart Date`);
-        res.end();
+        console.log("=================================================");
+        res.send({message: "::Server has stored date input::"});
 
     }
     

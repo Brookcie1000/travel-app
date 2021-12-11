@@ -20,7 +20,14 @@ const getLocationInput = async () => {
     } else {
         const serverRes = await sendLocationToServer("http://localhost:8081/storeLocationData", countryInput, cityInput, postcodeInput);
         try {
-            console.log(serverRes);
+            if (serverRes.message === "::Server has saved your location input::") {
+                console.log(serverRes.message);
+
+            } else {
+                alert("An Error Has Occured From Server.")
+
+            }
+            
 
         } catch(error) {
             console.log(error);
@@ -49,7 +56,7 @@ const sendLocationToServer = async (url, countryInput, cityInput, postcodeInput)
         body: JSON.stringify(userInput)
     })
     try{
-        return serverRes.text();
+        return serverRes.json();
 
     } catch(error) {
         console.log(error);
@@ -66,7 +73,7 @@ const getDateInput = async () => {
             alert(serverRes.message);
 
         } else {
-            console.log("::Server stored date data::");
+            console.log(serverRes.message);
 
         }
 
