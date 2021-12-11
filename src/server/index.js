@@ -44,8 +44,8 @@ const storeLocationData = async (req,res) => {
         console.log("Getting location info from geonames API");
         const APIData = await geonamesFetch();
         try {
-            arrayOfUserInputs[arrayLength-1].lat = APIData.postalCodes[0].lat;
-            arrayOfUserInputs[arrayLength-1].lng = APIData.postalCodes[0].lng;
+            arrayOfUserInputs[arrayLength-1].lat = `${APIData.postalCodes[0].lat}`;
+            arrayOfUserInputs[arrayLength-1].lng = `${APIData.postalCodes[0].lng}`;
             console.log(arrayOfUserInputs);
             res.send("::Server has saved your location input::");
 
