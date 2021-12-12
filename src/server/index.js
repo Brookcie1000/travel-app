@@ -75,6 +75,7 @@ const storeDateData = (req,res) => {
         console.log();
         console.log("=================================================");
         console.log(`Received <${dateInput.date}> as Depart Date`);
+        console.log(arrayOfUserInputs[arrayLength-1]);
         console.log("=================================================");
         res.send({message: "::Server has stored date input::"});
 
