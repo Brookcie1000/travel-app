@@ -105,5 +105,15 @@ const geonamesFetch = async () => {
 
 }
 
+const weatherbitFetch = async () => {
+    const rootURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
+    const arrayLength = arrayOfUserInputs.length;
+    const lat = "&lat=" + arrayOfUserInputs[arrayLength-1].lat;
+    const lng = "&lon=" + arrayOfUserInputs[arrayLength-1].lng;
+    const numDays = "&days=16"; //get the max forecast
+    const APIKey = "d3609b625014495da4815c72d5b21373" //put this into .env file
+
+}
+
 app.post('/storeLocationData', storeLocationData); //setup POST connection to server from client
 app.post('/storeDateData', storeDateData);
