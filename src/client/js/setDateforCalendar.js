@@ -21,6 +21,7 @@ const getTodayDate = () => {
 const updateHTML = (year, month, day) => {
     const htmlElement = document.getElementById("date-start")
     htmlElement.min = `${year}-${month}-${day}`
+    htmlElement.max = `${year}-${month}-${day+15}` //set the max date to 16 day forecast the API supplies.
     htmlElement.value = `${year}-${month}-${day}`
 
 }
