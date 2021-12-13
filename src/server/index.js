@@ -121,7 +121,7 @@ const geonamesFetch = async () => {
     const cityName = "placename=" + arrayOfUserInputs[arrayLength-1].city;
     const countryName = "&country=" + arrayOfUserInputs[arrayLength-1].country;
     const postcodeName = "&postalcode=" + arrayOfUserInputs[arrayLength-1].postcode;
-    const APIKey = `&username=${process.env.API_KEY}`
+    const APIKey = `&username=${process.env.API_KEY_GEO}` //key located in .env file
     const resFromAPI = await fetch(rootURL + cityName + countryName + postcodeName + APIKey);
     try {
         console.log();
@@ -147,7 +147,7 @@ const weatherbitFetch = async () => {
     const lat = "&lat=" + arrayOfUserInputs[arrayLength-1].lat;
     const lng = "&lon=" + arrayOfUserInputs[arrayLength-1].lng;
     const numDays = "&days=16"; //get the max forecast
-    const APIKey = "&key=d3609b625014495da4815c72d5b21373" //put this into .env file
+    const APIKey = `&key=${process.env.API_KEY_WEA}` //key located in .env file
     const resFromAPI = await fetch(rootURL + lat + lng + numDays + APIKey)
     try {
         console.log();
@@ -172,7 +172,7 @@ const pixabayFetch = async (keyword) => {
     const keyWord = "q=" + keyword;
     const imageType = "&image_type=photo";
     const cat = "&category=travel"
-    const APIKey = "&key=24787080-dddec284c92dd6c16c49a7b7e" //put this into .env
+    const APIKey = `&key=${process.env.API_KEY_PIC}` //key located in .env file
     const resFromAPI = await fetch(rootURL + keyWord + imageType + cat + APIKey);
     try {
         console.log();

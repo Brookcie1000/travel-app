@@ -74,11 +74,9 @@ const getDateInput = async () => {
 
         } else {
             console.log(serverRes.message);
-            console.log(serverRes.weather);
             const imageData = await getImageData("http://localhost:8081/getImageData");
             try {
                 const imageArray = imageData.image.hits;
-                console.log(imageArray);
                 if (imageArray.length !== 0) {
                     updateImageUI(imageArray);
 
@@ -140,7 +138,6 @@ const getImageData = async (url) => {
 
 const updateImageUI = (imageArray) => {
     const resultPicDiv = document.getElementById("result-pic");
-    console.log(imageArray[0].largeImageURL);
     resultPicDiv.style.backgroundImage = `url(${imageArray[0].largeImageURL})`;
 
 }
