@@ -55,6 +55,7 @@ const storeLocationData = async (req,res) => {
 
         } catch(error) {
             console.log(error);
+            res.send({message: "Country/City Not Supported."});
 
         }
 

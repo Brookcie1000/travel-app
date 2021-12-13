@@ -24,7 +24,7 @@ const getLocationInput = async () => {
                 console.log(serverRes.message);
 
             } else {
-                alert("An Error Has Occured From Server.")
+                alert(serverRes.message);
 
             }
             
