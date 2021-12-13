@@ -44,6 +44,7 @@ const storeLocationData = async (req,res) => {
         console.log("Getting location info from geonames API");
         const APIData = await geonamesFetch();
         try {
+            arrayOfUserInputs[arrayLength-1].valid = "true";
             arrayOfUserInputs[arrayLength-1].lat = `${APIData.postalCodes[0].lat}`;
             arrayOfUserInputs[arrayLength-1].lng = `${APIData.postalCodes[0].lng}`;
             arrayOfUserInputs[arrayLength-1].imageTag = `${APIData.postalCodes[0].adminName1}`
@@ -55,6 +56,8 @@ const storeLocationData = async (req,res) => {
 
         } catch(error) {
             console.log(error);
+            arrayOfUserInputs[arrayLength-1].valid = "false";
+            console.log(arrayOfUserInputs);
             res.send({message: "Country/City Not Supported."});
 
         }
@@ -70,11 +73,12 @@ const storeLocationData = async (req,res) => {
 const storeDateData = async (req,res) => {
     dateInput = req.body;
     const arrayLength = arrayOfUserInputs.length;
-    if (arrayOfUserInputs.length === 0) {
+    if (arrayOfUserInputs[arrayLength-1].valid === "false") {
+        console.log();
         console.log("=================================================");
-        console.log("There is no city/country input for this request. Reminding user...");
+        console.log("There is no valid city/country input for this request. Reminding user...");
         console.log("=================================================");
-        res.send({message: "Please Input Location Data First."});
+        res.send({message: "Please Input Valid Location Data First."});
     } else {
         arrayOfUserInputs[arrayLength-1].date = dateInput.date;
         console.log();

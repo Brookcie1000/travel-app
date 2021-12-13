@@ -69,7 +69,7 @@ const getDateInput = async () => {
     const DateInput = document.getElementById("date-start").value;
     const serverRes = await sendDateToServer("http://localhost:8081/storeDateData", DateInput);
     try {
-        if (serverRes.message === "Please Input Location Data First.") {
+        if (serverRes.message === "Please Input Valid Location Data First.") {
             alert(serverRes.message);
 
         } else {
