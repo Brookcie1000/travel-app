@@ -104,7 +104,7 @@ const getImageData = async (req,res) => {
     const city = arrayOfUserInputs[arrayLength-1].city;
     const APIData = await pixabayFetch(imageTag, city);
     try {
-        if (APIData.option2 >= APIData.option1) {
+        if (APIData.option2.total >= APIData.option1.total) {
             res.send({
                 image: APIData.option2,
                 message: "::Image fetched::"
