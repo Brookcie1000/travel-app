@@ -169,7 +169,7 @@ const weatherbitFetch = async () => {
 
 const pixabayFetch = async (keyword) => {
     const rootURL = "https://pixabay.com/api/?";
-    const keyWord = "q=iconic+" + keyword;
+    const keyWord = "q=" + keyword;
     const imageType = "&image_type=photo";
     const cat = "&category=travel"
     const APIKey = "&key=24787080-dddec284c92dd6c16c49a7b7e" //put this into .env

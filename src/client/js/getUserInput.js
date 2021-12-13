@@ -77,9 +77,14 @@ const getDateInput = async () => {
             console.log(serverRes.weather);
             const imageData = await getImageData("http://localhost:8081/getImageData");
             try {
-                console.log("ready to update UI");
-                console.log(imageData.image.hits[0].largeImageURL);
-                //updateImageUI();
+                const imageArray = imageData.image.hits;
+                console.log(imageArray);
+                if (imageArray.length !== 0) {
+                    updateImageUI(imageArray);
+
+                } else {
+                    console.log("::No image found, using default image::")
+                }
 
             } catch(error) {
                 console.log(error);
@@ -130,6 +135,13 @@ const getImageData = async (url) => {
         console.log(error);
 
     }
+
+}
+
+const updateImageUI = (imageArray) => {
+    const resultPicDiv = document.getElementById("result-pic");
+    console.log(imageArray[0].largeImageURL);
+    resultPicDiv.style.backgroundImage = `url(${imageArray[0].largeImageURL})`;
 
 }
 
