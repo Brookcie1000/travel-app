@@ -46,8 +46,12 @@ const storeLocationData = async (req,res) => {
         try {
             arrayOfUserInputs[arrayLength-1].lat = `${APIData.postalCodes[0].lat}`;
             arrayOfUserInputs[arrayLength-1].lng = `${APIData.postalCodes[0].lng}`;
+            arrayOfUserInputs[arrayLength-1].imageTag = `${APIData.postalCodes[0].adminName1}`
             console.log(arrayOfUserInputs);
-            res.send({message: "::Server has saved your location input::"});
+            res.send({
+                locationData: APIData,
+                message: "::Server has saved your location input::"
+            });
 
         } catch(error) {
             console.log(error);
@@ -62,7 +66,7 @@ const storeLocationData = async (req,res) => {
 
 }
 
-const storeDateData = (req,res) => {
+const storeDateData = async (req,res) => {
     dateInput = req.body;
     const arrayLength = arrayOfUserInputs.length;
     if (arrayOfUserInputs.length === 0) {
@@ -77,10 +81,37 @@ const storeDateData = (req,res) => {
         console.log(`Received <${dateInput.date}> as Depart Date`);
         console.log(arrayOfUserInputs[arrayLength-1]);
         console.log("=================================================");
-        res.send({message: "::Server has stored date input::"});
+        const APIData = await weatherbitFetch();
+        try {
+            res.send({
+                weather: APIData,
+                message: "::Server has stored date input::"
+                });
+
+        } catch(error) {
+            console.log(error);
+
+        }
 
     }
     
+}
+
+const getImageData = async (req,res) => {
+    const arrayLength = arrayOfUserInputs.length;
+    const keyword = arrayOfUserInputs[arrayLength-1].imageTag;
+    const APIData = await pixabayFetch(keyword);
+    try {
+        res.send({
+            image: APIData,
+            message: "::Image fetched::"
+        })
+
+    } catch(error) {
+        console.log(error);
+
+    }
+
 }
 
 const geonamesFetch = async () => {
@@ -91,11 +122,15 @@ const geonamesFetch = async () => {
     const postcodeName = "&postalcode=" + arrayOfUserInputs[arrayLength-1].postcode;
     const APIKey = `&username=${process.env.API_KEY}`
     const resFromAPI = await fetch(rootURL + cityName + countryName + postcodeName + APIKey);
-
     try {
-        console.log(rootURL + cityName + countryName + postcodeName + APIKey);
+        console.log();
         console.log("=================================================");
+        console.log("Fetching...");
+        console.log(rootURL + cityName + countryName + postcodeName + APIKey);
         const APIData = await resFromAPI.json();
+        console.log();
+        console.log("Sent API data back to client")
+        console.log("=================================================");
         return APIData;
 
     } catch(error) {
@@ -111,9 +146,52 @@ const weatherbitFetch = async () => {
     const lat = "&lat=" + arrayOfUserInputs[arrayLength-1].lat;
     const lng = "&lon=" + arrayOfUserInputs[arrayLength-1].lng;
     const numDays = "&days=16"; //get the max forecast
-    const APIKey = "d3609b625014495da4815c72d5b21373" //put this into .env file
+    const APIKey = "&key=d3609b625014495da4815c72d5b21373" //put this into .env file
+    const resFromAPI = await fetch(rootURL + lat + lng + numDays + APIKey)
+    try {
+        console.log();
+        console.log("=================================================");
+        console.log("Fetching...");
+        console.log(rootURL + lat + lng + numDays + APIKey);
+        const APIData = await resFromAPI.json();
+        console.log();
+        console.log("Sent API data back to client")
+        console.log("=================================================");
+        return APIData;
+
+    } catch(error) {
+        console.log(error);
+
+    }
+
+}
+
+const pixabayFetch = async (keyword) => {
+    const rootURL = "https://pixabay.com/api/?";
+    const keyWord = "q=iconic+" + keyword;
+    const imageType = "&image_type=photo";
+    const cat = "&category=travel"
+    const APIKey = "&key=24787080-dddec284c92dd6c16c49a7b7e" //put this into .env
+    const resFromAPI = await fetch(rootURL + keyWord + imageType + cat + APIKey);
+    try {
+        console.log();
+        console.log("=================================================");
+        console.log("Fetching...");
+        console.log(rootURL + keyWord + imageType + cat + APIKey);
+        const APIData = resFromAPI.json();
+        console.log();
+        console.log("Sent API data back to client")
+        console.log("=================================================");
+        return APIData;
+
+    } catch(error) {
+        console.log(error);
+
+    }
+
 
 }
 
 app.post('/storeLocationData', storeLocationData); //setup POST connection to server from client
 app.post('/storeDateData', storeDateData);
+app.get('/getImageData', getImageData);

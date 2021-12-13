@@ -74,6 +74,17 @@ const getDateInput = async () => {
 
         } else {
             console.log(serverRes.message);
+            console.log(serverRes.weather);
+            const imageData = await getImageData("http://localhost:8081/getImageData");
+            try {
+                console.log("ready to update UI");
+                console.log(imageData.image.hits[0].largeImageURL);
+                //updateImageUI();
+
+            } catch(error) {
+                console.log(error);
+
+            }
 
         }
 
@@ -82,17 +93,6 @@ const getDateInput = async () => {
 
     }
 
-}
-
-const resetCountryColour = () => {
-    const countryDiv = document.getElementById("country");
-    countryDiv.style.backgroundColor = "white";
-
-}
-
-const resetCityColour = () => {
-    const cityDiv = document.getElementById("city");
-    cityDiv.style.backgroundColor = "white";
 }
 
 const sendDateToServer = async (url, dateInput) => {
@@ -118,6 +118,30 @@ const sendDateToServer = async (url, dateInput) => {
 
     }
 
+}
+
+const getImageData = async (url) => {
+    const serverRes = await fetch(url);
+    try {
+        const APIData = serverRes.json();
+        return APIData;
+
+    } catch(error) {
+        console.log(error);
+
+    }
+
+}
+
+const resetCountryColour = () => {
+    const countryDiv = document.getElementById("country");
+    countryDiv.style.backgroundColor = "white";
+
+}
+
+const resetCityColour = () => {
+    const cityDiv = document.getElementById("city");
+    cityDiv.style.backgroundColor = "white";
 }
 
 export {getLocationInput}
