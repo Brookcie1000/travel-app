@@ -100,13 +100,24 @@ const storeDateData = async (req,res) => {
 
 const getImageData = async (req,res) => {
     const arrayLength = arrayOfUserInputs.length;
-    const keyword = arrayOfUserInputs[arrayLength-1].imageTag;
-    const APIData = await pixabayFetch(keyword);
+    const imageTag = arrayOfUserInputs[arrayLength-1].imageTag;
+    const city = arrayOfUserInputs[arrayLength-1].city;
+    const APIData = await pixabayFetch(imageTag, city);
     try {
-        res.send({
-            image: APIData,
-            message: "::Image fetched::"
-        })
+        if (APIData.option2 >= APIData.option1) {
+            res.send({
+                image: APIData.option2,
+                message: "::Image fetched::"
+            })
+
+        } else {
+            res.send({
+                image: APIData.option1,
+                message: "::Image fetched::"
+            })
+
+        }
+        
 
     } catch(error) {
         console.log(error);
@@ -167,23 +178,35 @@ const weatherbitFetch = async () => {
 
 }
 
-const pixabayFetch = async (keyword) => {
+const pixabayFetch = async (keyword, keywordAlt) => {
     const rootURL = "https://pixabay.com/api/?";
     const keyWord = "q=" + keyword;
+    const keyWordAlt = "q=" + keywordAlt;
+    const keyWordNormal = encodeURI(keyWord); //converts all accented chaarcters to be readable by fetch
+    const keyWordAltNormal = encodeURI(keyWordAlt); //converts all accented chaarcters to be readable by fetch
     const imageType = "&image_type=photo";
     const cat = "&category=travel"
     const APIKey = `&key=${process.env.API_KEY_PIC}` //key located in .env file
-    const resFromAPI = await fetch(rootURL + keyWord + imageType + cat + APIKey);
+    const resFromAPI1 = await fetch(rootURL + keyWordNormal + imageType + cat + APIKey);
+    const resFromAPI2 = await fetch(rootURL + keyWordAltNormal + imageType + cat + APIKey);
     try {
         console.log();
         console.log("=================================================");
         console.log("Fetching...");
-        console.log(rootURL + keyWord + imageType + cat + APIKey);
-        const APIData = resFromAPI.json();
+        console.log(rootURL + keyWordNormal + imageType + cat + APIKey);
+        console.log();
+        console.log("AND");
+        console.log();
+        console.log(rootURL + keyWordAltNormal + imageType + cat + APIKey)
+        const APIData1 = await resFromAPI1.json();
+        const APIData2 = await resFromAPI2.json();
         console.log();
         console.log("Sent API data back to client")
         console.log("=================================================");
-        return APIData;
+        return {
+            option1: APIData1,
+            option2: APIData2
+        };
 
     } catch(error) {
         console.log(error);

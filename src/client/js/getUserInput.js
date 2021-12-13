@@ -56,7 +56,7 @@ const sendLocationToServer = async (url, countryInput, cityInput, postcodeInput)
         body: JSON.stringify(userInput)
     })
     try{
-        return serverRes.json();
+        return await serverRes.json();
 
     } catch(error) {
         console.log(error);
@@ -78,6 +78,7 @@ const getDateInput = async () => {
             try {
                 const imageArray = imageData.image.hits;
                 if (imageArray.length !== 0) {
+                    console.log(imageData.message);
                     updateImageUI(imageArray);
 
                 } else {
@@ -114,7 +115,7 @@ const sendDateToServer = async (url, dateInput) => {
         body: JSON.stringify(userInput)
     })
     try {
-        return serverRes.json();
+        return await serverRes.json();
 
     } catch(error) {
         console.log(error);
@@ -126,7 +127,7 @@ const sendDateToServer = async (url, dateInput) => {
 const getImageData = async (url) => {
     const serverRes = await fetch(url);
     try {
-        const APIData = serverRes.json();
+        const APIData = await serverRes.json();
         return APIData;
 
     } catch(error) {
