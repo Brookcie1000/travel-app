@@ -139,7 +139,20 @@ const getImageData = async (url) => {
 }
 
 const updateTextUI = (weatherInfo) => {
-    console.log(weatherInfo);
+    //Function that when declared checks an array for matching date selected
+    const matchDate = (input, index, arr) => {
+        const dateInput = document.getElementById("date-start").value;
+        console.log(arr[index].valid_date);
+        console.log(dateInput);
+        if (arr[index].valid_date === dateInput) {
+            console.log(`Match Found in ${arr[index]}`);
+        }
+
+    }
+
+    //For each weather day, check to match it to user input date.
+    weatherInfo.weather.data.forEach(matchDate);
+    //iconSelection(weatherInfo)
 
 }
 
