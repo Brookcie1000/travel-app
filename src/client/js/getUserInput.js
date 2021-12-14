@@ -151,15 +151,10 @@ const updateTextUI = (weatherInfo) => {
             const iconDiv2 = document.getElementById("icon2");
             const weatherInfoDiv = document.getElementById("info");
 
-            console.log(arr[index]);
+            //implement the icons for the weather
             const iconCode = arr[index].weather.icon;
-            const baseIconCode = iconCode.slice(0,(iconCode.length-1));
-            console.log(baseIconCode);
-            const iconObject = iconSelection(baseIconCode);
-            //const dayIconCode = baseIconCode + "d";
-            //const nightIconCode = baseIconCode + "n";
-            //console.log(dayIconCode);
-            //console.log(nightIconCode);
+            const baseIconCode = iconCode.slice(0,(iconCode.length-1)); //remove the day/night element
+            const iconObject = iconSelection(baseIconCode); //function in iconTest.js
             iconDiv1.style.backgroundImage = `url(${iconObject.day})`;
             iconDiv2.style.backgroundImage = `url(${iconObject.night})`;
             console.log(`::Showing weather for date: ${dateInput}::`);
@@ -170,7 +165,6 @@ const updateTextUI = (weatherInfo) => {
 
     //For each weather day, check to match it to user input date.
     weatherInfo.weather.data.forEach(matchDate);
-    //iconSelection(weatherInfo)
 
 }
 
