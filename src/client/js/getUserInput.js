@@ -142,10 +142,17 @@ const updateTextUI = (weatherInfo) => {
     //Function that when declared checks an array for matching date selected
     const matchDate = (input, index, arr) => {
         const dateInput = document.getElementById("date-start").value;
-        console.log(arr[index].valid_date);
-        console.log(dateInput);
         if (arr[index].valid_date === dateInput) {
-            console.log(`Match Found in ${arr[index]}`);
+            const iconDiv1 = document.getElementById("icon1");
+            const iconDiv2 = document.getElementById("icon2");
+            const weatherInfoDiv = document.getElementById("info");
+
+            let iconCode = arr[index].weather.icon;
+            iconCode = iconCode.slice(0,(iconCode.length-1));
+            iconDiv1.style.backgroundImage = `url(./src/client/img/weather-icons/${iconCode}d.png)`;
+            iconDiv2.style.backgroundImage = `url(./src/client/img/weather-icons/${iconCode}n.png)`;
+            console.log(`::Showing weather for date: ${dateInput}::`);
+
         }
 
     }
@@ -178,3 +185,4 @@ export {resetCountryColour}
 export {resetCityColour}
 export {sendDateToServer}
 export {getDateInput}
+export {updateTextUI}

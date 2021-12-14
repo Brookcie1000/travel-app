@@ -43,7 +43,25 @@
         font-size: 50px;
 
         #icons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
             height: 25%;
+
+            #icon1 {
+                height: 120px;
+                width: 120px;
+                background-image: url("../img/weather-icons/default-icon.png");
+
+            }
+
+            #icon2 {
+                height: 120px;
+                width: 120px;
+                background-image: url("../img/weather-icons/default-icon.png");
+
+            }
 
         }
 
