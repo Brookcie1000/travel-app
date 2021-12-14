@@ -24,8 +24,41 @@
 #result-main {
     grid-area: "main";
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     border-bottom: $border-radius-px;
+    font-family: $main-font;
+    padding: $card-text-padding;
+    column-gap: $card-main-gap;
+
+    #weather-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        height: 90%;
+        margin-left: auto;
+        font-size: 50px;
+
+        #icons {
+            height: 25%;
+
+        }
+
+        #info {
+            height: 65%;
+            width: 100%;
+
+        }
+
+    }
+
+    #weather-message {
+        width: 55%;
+        height: 90%;
+        font-size: 50px;
+
+    }
 }

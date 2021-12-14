@@ -79,6 +79,7 @@ const getDateInput = async () => {
                 const imageArray = imageData.image.hits;
                 if (imageArray.length !== 0) {
                     console.log(imageData.message);
+                    updateTextUI(serverRes);
                     updateImageUI(imageArray);
 
                 } else {
@@ -134,6 +135,11 @@ const getImageData = async (url) => {
         console.log(error);
 
     }
+
+}
+
+const updateTextUI = (weatherInfo) => {
+    console.log(weatherInfo);
 
 }
 
