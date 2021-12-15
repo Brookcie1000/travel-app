@@ -147,16 +147,71 @@ const updateTextUI = (weatherInfo) => {
     const matchDate = (input, index, arr) => {
         const dateInput = document.getElementById("date-start").value;
         if (arr[index].valid_date === dateInput) {
+            //implement the icons for the weather
             const iconDiv1 = document.getElementById("icon1");
             const iconDiv2 = document.getElementById("icon2");
             const weatherInfoDiv = document.getElementById("info");
-
-            //implement the icons for the weather
             const iconCode = arr[index].weather.icon;
             const baseIconCode = iconCode.slice(0,(iconCode.length-1)); //remove the day/night element
             const iconObject = iconSelection(baseIconCode); //function in iconTest.js
             iconDiv1.style.backgroundImage = `url(${iconObject.day})`;
             iconDiv2.style.backgroundImage = `url(${iconObject.night})`;
+            
+
+            //implement the weather info
+            const maxTemp = arr[index].max_temp;
+            const minTemp = arr[index].min_temp;
+            const rainChance = arr[index].pop;
+            const snowAmount = arr[index].snow.toFixed();
+            const UVRating = arr[index].uv;
+
+            const maxTempDiv = document.getElementById("maxTemp");
+            const minTempDiv = document.getElementById("minTemp");
+            const rainDiv = document.getElementById("rain");
+            const snowDiv = document.getElementById("snow");
+            const UVDiv = document.getElementById("UV");
+
+            maxTempDiv.innerText = `Max Temp: ${maxTemp}°C`;
+            minTempDiv.innerText = `Min Temp: ${minTemp}°C`;
+            rainDiv.innerText = `Chance of Rain: ${rainChance}%`;
+            if (snowAmount > 1) {
+                snowDiv.innerText = `Snow Depth: ${snowAmount}mm`;
+
+            } else {
+                snowDiv.innerText = "";
+
+            }
+            
+            UVDiv.innerText = `UV Rating: ${UVRating}`;
+
+            //implement message for weather
+            const messageDiv = document.getElementById("weather-message");
+            let message = "";
+
+            if ((minTemp < 0) && (snowAmount > 1)) {
+                message = `BRRRRRRRRRR it's going to be freezing! Make sure to pack a jacket and catch some snow on your tongue.`
+
+            } else if (minTemp <= 0) {
+                message = `BRRRRRRRRRR it's going to be freezing! Make sure to pack a jacket.`
+
+            } else if ((0 < maxTemp) && (maxTemp < 15)) {
+                console.log(maxTemp)
+                message = `Bit chilly, take your scarf and have a hot drink with you at all times.`
+
+            } else if ((12 < minTemp) && (minTemp < 20) && (maxTemp < 27)) {
+                message = `I don't know about you, but a love a warm day and evening.`
+
+            } else if (maxTemp >= 27) {
+                message = `oooooooooo looks like it's going to be HOT. Get out the fan from the garage.`
+
+            } else {
+                message = `Have a great time, don't forget to check for your passport (if you need it)!`
+
+            }
+
+            messageDiv.innerText = message;
+
+            //give message to user that the API is complete.
             console.log(`::Showing weather for date: ${dateInput}::`);
 
         }
