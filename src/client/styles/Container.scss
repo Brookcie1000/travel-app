@@ -11,3 +11,20 @@
     "footer";
 
 }
+
+@media (min-width: 1024px) {
+    #container {
+        border: 4px green solid;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100px 2015px 2215px 2215px 80px;
+        grid-template-areas:
+        "header"
+        "location"
+        "date"
+        "result"
+        "footer";
+    
+    }
+
+}
