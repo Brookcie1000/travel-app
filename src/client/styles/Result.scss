@@ -10,15 +10,9 @@
 }
 
 #result-pic {
-    grid-area: "pic";
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-top: $border-radius-px;
-    background-image: url(../img/default-result-pic.jpg);
+    background: url(../img/default-result-pic.jpg) no-repeat center;
     background-size: 100% 100%;
-
+    
 }
 
 #result-main {
@@ -38,9 +32,8 @@
         justify-content: center;
         align-items: center;
         width: 60%;
-        height: 90%;
+        height: 100%;
         margin-left: auto;
-        font-size: 50px;
 
         #icons {
             display: flex;
@@ -50,34 +43,39 @@
             height: 25%;
 
             #icon1 {
-                height: 120px;
-                width: 120px;
-                background-image: url("../img/weather-icons/default-icon.png");
+                height: 40px;
+                width: 40px;
+                background: url("../img/weather-icons/default-icon.png") no-repeat center;
+                background-size: 100% 100%;
 
             }
 
             #icon2 {
-                height: 120px;
-                width: 120px;
-                background-image: url("../img/weather-icons/default-icon.png");
+                height: 40px;
+                width: 40px;
+                background: url("../img/weather-icons/default-icon.png") no-repeat center;
+                background-size: 100% 100%;
 
             }
 
         }
 
         #info {
-            font-size: 40px;
             height: 65%;
             width: 100%;
+            font-size: 12px;
 
         }
 
     }
 
     #weather-message {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 40%;
-        height: 90%;
-        font-size: 50px;
+        height: 100%;
 
     }
 }

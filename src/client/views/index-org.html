@@ -10,7 +10,7 @@
             <div id="header" class="outline"><h1>Travel App</h1></div>
             <div id="location" class="outline">
                 <div id="location-card" class="card outline">
-                    <div id="location-pic" class="pic outline">
+                    <div id="location-pic" class="outline">
                         <!--Used CSS to input an image for the location-pic-->
                     </div>
                     <div id="location-main" class="outline">
@@ -275,23 +275,62 @@
                             <div id="city-text" class="outline">
                                 <form>
                                     <label for="city">Input City/Suburb</label>
-                                    <input type="text" id="city" name="city" onblur="Client.resetCityColour()">
+                                    <input type="text" id="city" name="city" onblur="Client.resetCityColour()"><br><br>
                                 </form>
                             </div>
                             <div id="city-postcode" class="outline">
                                 <label for="postcode">Input Postcode/Zipcode</label>
-                                    <input type="text" id="postcode" name="postcode">
+                                    <input type="text" id="postcode" name="postcode"><br><br>
                             </div>
                         </div>
-                        <div id="submit-bttn-location" class="outline bttn">
-                            <button onclick="Client.getLocationInput()">Submit</button>
+                        <div id="submit-bttn" class="outline bttn">
+                            <button class="kk-submit" onclick="Client.getLocationInput()">
+                                <svg width="274" height="112" 
+                                     viewPort="0 0 274 112" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                  
+                                  <rect class="btn-shape btn-bg"
+                                        x="0" y="3" 
+                                        width="274" height="102"
+                                        rx="32" ry="32" 
+                                        fill="#ffffff"
+                                        fill-opacity="1"
+                                        stroke="#d5f8fb" stroke-width="4"
+                                        />  
+                                  <rect class="btn-shape btn-color"
+                                        x="0" y="3" 
+                                        width="274" height="102"
+                                        rx="32" ry="32" 
+                                        fill="#ffffff"
+                                        fill-opacity="0"
+                                        stroke="rgb(30,205,151)" stroke-width="4"
+                                        />
+                                  <text class="checkNode" x="137" y="64" 
+                                        font-family="Montserrat" 
+                                        font-size="44"
+                                        fill-opacity="1"
+                                        text-anchor="middle"
+                                        fill="rgb(255,255,255)" >
+                                    ✔
+                                  </text>
+                                  <text class="textNode" x="137" y="64" 
+                                        transform="scale(1)"
+                                        font-family="Montserrat" 
+                                        font-size="50"
+                                        fill-opacity="1"
+                                        text-anchor="middle"
+                                        fill="rgb(30,205,151)" >
+                                    Submit
+                                  </text>
+                                </svg>
+                              </button>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="date" class="outline">
                 <div id="date-card" class="card outline">
-                    <div id="date-pic" class="pic outline">
+                    <div id="date-pic" class="outline">
                         <!--Have used CSS to input the image of the date-pic-->
                     </div>
                     <div id="date-main" class="outline">
@@ -299,15 +338,54 @@
                             <label for="start">Depart Date:</label>
                             <input type="date" id="date-start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2021-01-01">
                         </div>
-                        <div id="submit-bttn-date" class="outline bttn">
-                            <button onclick="Client.getDateInput()">Submit</button>
+                        <div id="submit-bttn" class="outline bttn" onclick="Client.getDateInput()">
+                            <button class="kk-submit">
+                                <svg width="274" height="112" 
+                                     viewPort="0 0 274 112" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                  
+                                <rect class="btn-shape btn-bg"
+                                        x="0" y="3" 
+                                        width="274" height="102"
+                                        rx="32" ry="32" 
+                                        fill="#ffffff"
+                                        fill-opacity="1"
+                                        stroke="#d5f8fb" stroke-width="4"
+                                        />  
+                                <rect class="btn-shape btn-color"
+                                        x="0" y="3" 
+                                        width="274" height="102"
+                                        rx="32" ry="32" 
+                                        fill="#ffffff"
+                                        fill-opacity="0"
+                                        stroke="rgb(30,205,151)" stroke-width="4"
+                                        />
+                                <text class="checkNode" x="137" y="64" 
+                                        font-family="Montserrat" 
+                                        font-size="44"
+                                        fill-opacity="1"
+                                        text-anchor="middle"
+                                        fill="rgb(255,255,255)" >
+                                    ✔
+                                </text>
+                                <text class="textNode" x="137" y="64" 
+                                        transform="scale(1)"
+                                        font-family="Montserrat" 
+                                        font-size="50"
+                                        fill-opacity="1"
+                                        text-anchor="middle"
+                                        fill="rgb(30,205,151)" >
+                                    Submit
+                                </text>
+                                </svg>
+                              </button>
                         </div>
-                    </div>                 
+                    </div>
                 </div>
             </div>
             <div id="result" class="outline">
                 <div id="result-card" class="card outline">
-                    <div id="result-pic" class="pic outline">
+                    <div id="result-pic" class="outline">
                         <!--Have used CSS to input the image of the date-pic-->
                     </div>
                     <div id="result-main" class="outline">

@@ -1,8 +1,15 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
 #container {
-    border: 4px green solid;
+    border: 2px green solid;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 200px 2015px 2215px 2215px 80px;
+    grid-template-rows: 100px 690px 790px 790px 40px;
     grid-template-areas:
     "header"
     "location"
