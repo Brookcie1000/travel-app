@@ -1,7 +1,7 @@
 @import "./Variables.scss";
 
 .outline {
-    border: 2px red solid;
+    //border: 2px red solid;
 
 }
 
@@ -19,6 +19,8 @@ body {
     "main";
     border-radius: $border-radius-px;
     background-color: lightgoldenrodyellow;
+    box-shadow: 0 3px 10px rgb(0,0,0);
+    border: 2px black solid;
 
 }
 

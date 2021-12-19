@@ -34,6 +34,9 @@
         width: 60%;
         height: 100%;
         margin-left: auto;
+        background-color: seashell;
+        border-radius: $border-radius-px;
+        border: 2px black solid;
 
         #icons {
             display: flex;
@@ -43,16 +46,16 @@
             height: 25%;
 
             #icon1 {
-                height: 40px;
-                width: 40px;
+                height: 15vw;
+                width: 15vw;
                 background: url("../img/weather-icons/default-icon.png") no-repeat center;
                 background-size: 100% 100%;
 
             }
 
             #icon2 {
-                height: 40px;
-                width: 40px;
+                height: 15vw;
+                width: 15vw;
                 background: url("../img/weather-icons/default-icon.png") no-repeat center;
                 background-size: 100% 100%;
 
@@ -85,6 +88,31 @@
 
         #weather-info {
 
+            #icons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                height: 25%;
+    
+                #icon1 {
+                    height: 80px;
+                    width: 80px;
+                    background: url("../img/weather-icons/default-icon.png") no-repeat center;
+                    background-size: 100% 100%;
+    
+                }
+    
+                #icon2 {
+                    height: 80px;
+                    width: 80px;
+                    background: url("../img/weather-icons/default-icon.png") no-repeat center;
+                    background-size: 100% 100%;
+    
+                }
+    
+            }
+
             #info {
                 font-size: 18px;
 
@@ -101,6 +129,31 @@
     #result-main {
 
         #weather-info {
+
+            #icons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                height: 25%;
+    
+                #icon1 {
+                    height: 5vw;
+                    width: 5vw;
+                    background: url("../img/weather-icons/default-icon.png") no-repeat center;
+                    background-size: 100% 100%;
+    
+                }
+    
+                #icon2 {
+                    height: 5vw;
+                    width: 5vw;
+                    background: url("../img/weather-icons/default-icon.png") no-repeat center;
+                    background-size: 100% 100%;
+    
+                }
+    
+            }
 
             #info {
                 font-size: 1vw;
