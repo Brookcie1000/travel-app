@@ -11,10 +11,25 @@ body, html {
     grid-template-columns: 100%;
     grid-template-rows: 100px 100vh 100vh 100vh 40px;
     grid-template-areas:
-    "header"
+    "head"
     "location"
     "date"
     "result"
     "footer";
+
+}
+
+@media (min-width: 1024px) {
+    #container {
+        border: 2px green solid;
+        display: grid;
+        grid-template-columns: 33vw 33vw 33vw;
+        grid-template-rows: 100px 100vh 40px;
+        grid-template-areas:
+        "head head head"
+        "location date result"
+        "footer footer footer";
+    
+    }
 
 }

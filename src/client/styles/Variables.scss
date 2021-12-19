@@ -8,10 +8,21 @@ $card-text-width: 100%;
 $card-text-padding: 20px;
 $main-font: Arial, Helvetica, sans-serif;
 
-@media (max-width: 484px) {
+@media (min-width: 484px) {
     $card-width-dim: 400px;
     $card-row-pic-dim: 300px;
     $card-row-main-dim: 400px;
+    $card-main-gap: 10px;
+    $card-text-height: 100%;
+    $card-text-width: 100%;
+    $card-text-padding: 20px;
+
+}
+
+@media (min-width: 1024px) {
+    $card-width-dim: 25vw;
+    $card-row-pic-dim: 17vw;
+    $card-row-main-dim: 20vw;
     $card-main-gap: 10px;
     $card-text-height: 100%;
     $card-text-width: 100%;

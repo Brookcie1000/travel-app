@@ -68,8 +68,15 @@ button {
 
 }
 
+
 @media (min-width: 484px) {
-    @import "./Variables.scss";
+    $card-width-dim: 400px;
+    $card-row-pic-dim: 300px;
+    $card-row-main-dim: 400px;
+    $card-main-gap: 10px;
+    $card-text-height: 100%;
+    $card-text-width: 100%;
+    $card-text-padding: 20px;
 
     .card {
         display: grid;
@@ -85,5 +92,27 @@ button {
 
 }
 
+@media (min-width: 1024px) {
+    $card-width-dim: 25vw;
+    $card-row-pic-dim: 17vw;
+    $card-row-main-dim: 20vw;
+    $card-main-gap: 10px;
+    $card-text-height: 100%;
+    $card-text-width: 100%;
+    $card-text-padding: 20px;
+
+    .card {
+        display: grid;
+        grid-template-columns: $card-width-dim;
+        grid-template-rows: $card-row-pic-dim $card-row-main-dim;
+        grid-template-areas:
+        "pic"
+        "main";
+        border-radius: $border-radius-px;
+        background-color: lightgoldenrodyellow;
+    
+    }
+
+}
 
 
