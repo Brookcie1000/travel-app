@@ -15,7 +15,5 @@ The goal of this repo is to demonstrate a multi-API app that allows for a user t
 6) The server should begin to run and display its port 8081, this can be changed if you wish.
 7) If you're running using the 'build-dev' (see step 3), a webpage should have already opened. You can input your location and date, and it will return some information.
 
-THIS PROJECT IS NOT FINISHED! Some bugs may occur.
-
 
 
