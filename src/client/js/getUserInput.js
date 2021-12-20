@@ -25,6 +25,7 @@ const getLocationInput = async () => {
         try {
             if (serverRes.message === "::Server has saved your location input::") {
                 console.log(serverRes.message);
+                alert("Location Submitted");
 
             } else {
                 alert(serverRes.message);
