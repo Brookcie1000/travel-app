@@ -6,7 +6,7 @@ import "./styles/Location.scss"
 import "./styles/Date.scss"
 import "./styles/Result.scss"
 import "./styles/Footer.scss"
-import { getTodayDate } from "./js/setDateforCalendar"
+import { getTodayDate } from "./js/todayDate"
 import { updateHTML } from "./js/setDateforCalendar"
 import { getLocationInput, sendDateToServer, resetCityColour, resetCountryColour, getDateInput, updateTextUI} from "./js/getUserInput"
 

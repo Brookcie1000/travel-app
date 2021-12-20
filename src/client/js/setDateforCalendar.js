@@ -1,22 +1,4 @@
-const getTodayDate = () => {
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    if (day < 10) {
-        day = "0" + day;
-
-    }
-
-    if (month < 10) {
-        month = "0" + month;
-
-    }
-
-    return {one: day, two: month, three: year}
-
-}
+import { getTodayDate } from "./todayDate";
 
 const updateHTML = (year, month, day) => {
     const date = new Date();
@@ -68,5 +50,4 @@ const currentDate = getTodayDate(); //store the date
 
 updateHTML(currentDate.three, currentDate.two, currentDate.one); //update the date on page
 
-export {getTodayDate}
 export {updateHTML}
