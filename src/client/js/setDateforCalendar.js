@@ -25,6 +25,7 @@ const updateHTML = (year, month, day) => {
     let maxYear;
     const htmlElement = document.getElementById("date-start")
     htmlElement.min = `${year}-${month}-${day}`
+    //below checks for the changing months and years for max dates
     if ((month === "01") || (month === "03") || (month === "05") || (month === "07" || (month === "08") || (month === 10) || (month === 12))) {
         if (maxDay > 31) {
             maxDay = (day + 15) - 31;
